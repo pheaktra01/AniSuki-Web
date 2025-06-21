@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Anime Detail</title>
+    <link rel="icon" href="logoPic.png" type="image/png">
+    <link rel="stylesheet" href="animeDetailStyle.css">
+</head>
+<body>
+    
+    <div id="navbar"></div>
+    <script src="Javascripts/headerScript.js"></script>
+
+
+    <div class="anime-detail">
+        <div class="anime-detail-header">
+            <div class="anime-banner">
+            <img src="cover/frieren-cover-2.jpg" alt="banner">
+            <div class="top-gradient"></div>
+            </div>
+            <div class="anime-info">
+            <img src="poster/Frieren-Beyond-Journeys-End.png" alt="Frieren Cover">
+            <div>
+                <h2>Frieren: Beyond Journey’s End</h2>
+                <p><strong>Sousou no Frieren</strong></p>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="average-rating" style="font-size: 16px; color: #FFD700;">⭐ 9.1</span>
+                <span id="rating-count" style="font-size: 14px; color: #ccc;">(0 votes)</span>
+                </div>
+                <div>
+                <a href="watchAnime.html">
+                    <button class="watch-nowBtn">▶ Watch Now</button>
+                </a>
+                <button class="ratingBtn" id="open-rating">⭐ Rate Anime</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Rating Modal -->
+        <div id="rating-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+            <div style="background:#18122b; padding:32px 24px 24px 24px; border-radius:12px; min-width:300px; text-align:center; position:relative;">
+            <span id="close-rating" style="position:absolute; top:10px; right:16px; font-size:22px; color:#ccc; cursor:pointer;">&times;</span>
+            <h3 style="color:#c084fc; margin-bottom:18px;">Rate this Anime</h3>
+            <div id="star-container" style="font-size:32px; margin-bottom:16px;">
+                <span class="star" data-value="1" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="2" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="3" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="4" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="5" style="cursor:pointer; color:#ccc;">&#9733;</span>
+            </div>
+            <button id="submit-rating" class="watch-nowBtn" style="margin:0 auto; display:block;">Submit</button>
+            <div id="rating-message" style="margin-top:12px; color:#c084fc; font-size:16px;"></div>
+            </div>
+        </div>
+        <script>
+            // Simple localStorage-based rating system
+            function getRatingData() {
+            const data = localStorage.getItem('frieren-rating');
+            return data ? JSON.parse(data) : { sum: 0, count: 0 };
+            }
+            function setRatingData(sum, count) {
+            localStorage.setItem('frieren-rating', JSON.stringify({ sum, count }));
+            }
+            function updateRatingDisplay() {
+            const { sum, count } = getRatingData();
+            const avg = count ? (sum / count).toFixed(2) : '9.1';
+            document.getElementById('average-rating').textContent = `⭐ ${avg}`;
+            document.getElementById('rating-count').textContent = `(${count} vote${count === 1 ? '' : 's'})`;
+            }
+            updateRatingDisplay();
+
+            // Modal logic
+            document.getElementById('open-rating').onclick = function() {
+            document.getElementById('rating-modal').style.display = 'flex';
+            document.getElementById('rating-message').textContent = '';
+            highlightStars(0);
+            };
+            document.getElementById('close-rating').onclick = function() {
+            document.getElementById('rating-modal').style.display = 'none';
+            };
+            window.onclick = function(e) {
+            if (e.target === document.getElementById('rating-modal')) {
+                document.getElementById('rating-modal').style.display = 'none';
+            }
+            };
+
+            // Star rating logic
+            let selectedRating = 0;
+            function highlightStars(n) {
+            document.querySelectorAll('#star-container .star').forEach((star, i) => {
+                star.style.color = i < n ? '#FFD700' : '#ccc';
+            });
+            }
+            document.querySelectorAll('#star-container .star').forEach(star => {
+            star.onmouseover = function() {
+                highlightStars(Number(star.dataset.value));
+            };
+            star.onmouseout = function() {
+                highlightStars(selectedRating);
+            };
+            star.onclick = function() {
+                selectedRating = Number(star.dataset.value);
+                highlightStars(selectedRating);
+            };
+            });
+
+            document.getElementById('submit-rating').onclick = function() {
+            if (!selectedRating) {
+                document.getElementById('rating-message').textContent = 'Please select a rating!';
+                return;
+            }
+            // Prevent multiple votes per session
+            if (sessionStorage.getItem('frieren-rated')) {
+                document.getElementById('rating-message').textContent = 'You have already rated!';
+                return;
+            }
+            const { sum, count } = getRatingData();
+            setRatingData(sum + selectedRating, count + 1);
+            sessionStorage.setItem('frieren-rated', '1');
+            updateRatingDisplay();
+            document.getElementById('rating-message').textContent = 'Thank you for rating!';
+            setTimeout(() => {
+                document.getElementById('rating-modal').style.display = 'none';
+            }, 1200);
+            };
+        </script></div>
+
+        <div class="anime-description">
+            <div class="description-header">
+                <h3 id="overview-tab" class="active-tab">Overview</h3>
+                <h3 id="episodes-tab">Episodes</h3>
+                <h3 id="character-tab">Characters</h3>
+            </div>
+
+            <div class="overview">
+                <div class="detail">
+                    <span class="detail-value">Detail</span>
+                    <div class="info-row"><span class="label">Type</span><span class="value">TV</span></div>
+                    <div class="info-row"><span class="label">Episodes</span><span class="value">28</span></div>
+                    <div class="info-row"><span class="label">Genre</span><span class="value">Adventure, Fantasy, Drama</span></div>
+                    <div class="info-row"><span class="label">Status</span><span class="value">Finished</span></div>
+                    <div class="info-row"><span class="label">Country</span><span class="value">Japan</span></div>
+                    <div class="info-row"><span class="label">Studio</span><span class="value">Madhouse</span></div>
+                    <div class="info-row"><span class="label">Source</span><span class="value">Manga</span></div>
+                    <div class="info-row"><span class="label">Duration</span><span class="value">24 min</span></div>
+                    <div class="info-row"><span class="label">Popularity</span><span class="value">168k</span></div>
+                </div>
+                <div class="description">
+                    <span class="deacription-value">Description</span>
+                    <p>Frieren: Beyond Journey’s End follows the story of Frieren, an elven mage who was part of the legendary hero party that defeated the Demon King. After the hero's death, she embarks on a journey to understand human emotions and the passage of time, exploring themes of friendship, loss, and the meaning of life.</p>
+                </div>
+            </div>
+
+            <div class="episodes">
+                <div class="episode-list">
+                    
+                </div>
+            </div>
+
+            <div class="characters">
+                <div id="character-section" class="characters-section"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="anime-section"></div>
+
+    <script src="Javascripts/section.js"></script>
+    <script>
+        // Toggle Tabs
+        document.getElementById('overview-tab').addEventListener('click', function () {
+            document.querySelector('.overview').style.display = 'flex';
+            document.querySelector('.episodes').style.display = 'none';
+            document.querySelector('.characters').style.display = 'none';
+
+            this.classList.add('active-tab');
+            document.getElementById('episodes-tab').classList.remove('active-tab');
+            document.getElementById('character-tab').classList.remove('active-tab');
+        });
+
+        document.getElementById('episodes-tab').addEventListener('click', function () {
+            document.querySelector('.overview').style.display = 'none';
+            document.querySelector('.characters').style.display = 'none';
+            document.querySelector('.episodes').style.display = 'block';
+
+            this.classList.add('active-tab');
+            document.getElementById('overview-tab').classList.remove('active-tab');
+            document.getElementById('character-tab').classList.remove('active-tab');
+        });
+
+        document.getElementById('character-tab').addEventListener('click', function () {
+            document.querySelector('.overview').style.display = 'none';
+            document.querySelector('.episodes').style.display = 'none';
+            document.querySelector('.characters').style.display = 'block';
+
+            this.classList.add('active-tab');
+            document.getElementById('overview-tab').classList.remove('active-tab');
+            document.getElementById('episodes-tab').classList.remove('active-tab');
+        });
+
+        addAnimeSection("Json file/recommendAnime.json", "anime-section");
+        addCharacterSection("Json file/characters.json", "character-section");
+    </script>
+
+    <script>
+        fetch('Json file/Anime.json')
+        .then(res => res.json())
+        .then(data => {
+            const anime = data[0];
+            const episodeCount = parseInt(anime.episode, 10);
+            const episodeList = document.querySelector('.episode-list');
+            episodeList.innerHTML = '';
+
+            // Create "Trailer" link
+            const trailerLink = document.createElement('a');
+            trailerLink.href = 'watchAnime.html?episode=trailer';
+            trailerLink.className = 'episode-button';
+            trailerLink.textContent = '▶ Trailer';
+            episodeList.appendChild(trailerLink);
+
+            // Create episode links
+            for (let i = 0; i < episodeCount; i++) {
+            const episodeLink = document.createElement('a');
+            episodeLink.href = `watchAnime.html?episode=${i + 1}`;
+            episodeLink.className = 'episode-button';
+            episodeLink.textContent = `EP: ${i + 1} ${anime.episodes ? anime.episodes[i] || '' : ''}`;
+            episodeList.appendChild(episodeLink);
+            }
+        })
+        .catch(err => console.error(err));
+    </script>
+
+
+
+    <div id="footer"></div>
+    <script>
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('footer').innerHTML = html;
+        });
+    </script>
+</body>
+</html>

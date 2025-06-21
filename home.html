@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AniSuki</title>
+  <link rel="icon" type="image/png" href="logoPic.png">
+  <link rel="stylesheet" href="homeStyle.css">
+</head>
+<body>
+  <!-- ============ Navbar ================ -->
+  <div id="navbar"></div>
+  <script src="Javascripts/headerScript.js"></script>
+
+
+  <!-- ============ Hero Section or first landing page ==============-->
+  <section class="hero">
+    <video id="heroVideo" autoplay muted playsinline></video>
+    <div class="overlay"></div>
+    <div class="text-content">
+      <div class="upcoming-tag" id="animeTag"></div>
+      <div class="anime-title" id="animeTitle"></div>
+      <div class="release-info" id="animeRelease"></div>
+      <div class="description" id="animeDescription"></div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="animeDetail.html" class="detail-button">More Details</a>
+        <button id="volumeToggle" aria-label="Toggle volume">
+          <span id="volumeIcon">🔇</span>
+        </button>
+      </div>
+      </div>
+        </div>
+        <div class="scroll-indicator" style="text-align: center;">⬇ Scroll down</div>
+      </section>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const video = document.getElementById('heroVideo');
+          const volumeToggle = document.getElementById('volumeToggle');
+          const volumeIcon = document.getElementById('volumeIcon');
+          function updateIcon() {
+            volumeIcon.textContent = video.muted ? '🔇' : '🔊';
+          }
+          volumeToggle.addEventListener('click', function () {
+            video.muted = !video.muted;
+            updateIcon();
+          });
+          // Update icon on load
+          updateIcon();
+        });
+      </script>
+
+  <script>
+    let animeList = [];
+    let currentIndex = 0;
+    function loadAnime(index) {
+      const anime = animeList[index];
+      const video = document.getElementById('heroVideo');
+      video.src = anime.video;
+      video.load();
+      video.play();
+      document.getElementById('animeTag').textContent = anime.tag;
+      document.getElementById('animeTitle').textContent = anime.title;
+      document.getElementById('animeRelease').textContent = anime.release;
+      document.getElementById('animeDescription').textContent = anime.description;
+    }
+
+    fetch('Json file/upcomingAnime.json')
+      .then(response => response.json())
+      .then(data => {
+        animeList = data;
+        currentIndex = Math.floor(Math.random() * animeList.length);
+        loadAnime(currentIndex);
+        document.getElementById('heroVideo').addEventListener('ended', () => {
+          currentIndex = (currentIndex + 1) % animeList.length;
+          loadAnime(currentIndex);
+        });
+      });
+
+    window.addEventListener('scroll', () => {
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (window.scrollY > 20) {
+        scrollIndicator.style.opacity = '0';
+      }
+    });
+  </script>
+
+  <!-- ============== Anime History Section ==================  -->
+   <div id="history-section"></div>
+
+  <!-- ============== Anime last update section ============= -->
+  <div id="last-update"></div>
+
+  <!-- ==============  Feature Section ============= -->
+  <section class="feature-section">
+    <h2 class="section-title">Feature</h2>
+    <div class="feature-carousel-container">
+      <div class="feature-list">
+        <div class="feature-category">Adventure</div>
+        <div class="feature-category">Action</div>
+        <div class="feature-category">Comedy</div>
+        <div class="feature-category">Drama</div>
+        <div class="feature-category">Fantasy</div>
+        <div class="feature-category">Sci-fi</div>
+        <div class="feature-category">Romance</div>
+      </div>
+    </a>
+  </section>
+
+  <!-- Load JS and call the function -->
+  <div id="anime-section2"></div>
+
+  <script src="Javascripts/section.js"></script>
+
+  <script>
+    addSection("Json file/animeHistory.json", "history-section")
+    addSection("Json file/lastUpdate.json", "last-update");
+    addAnimeSection("Json file/animeSection1.json", "anime-section2");
+    addAnimeSection("Json file/nextSeason.json", "anime-section3");
+  </script>
+
+  <!-- =============================== Top Anime ============================ -->
+  <div class="top-anime">
+    <!-- ===== Top rate ===== -->
+    <div class="top-rate-anime">
+      <h1>Top 5 Rating</h1>
+      <a href="animeDetail.html">
+        <div class="top-anime-item">
+          <div class="rank" style="color: #58FF48;">#1</div>
+          <div>
+            <h3>Frieren: Beyond Journey's End</h3>
+            <p>⭐ 9.1 | Finished</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank" style="color: #CF8735;">#2</div>
+          <div>
+            <h3>Frieren: Beyond Journey's End</h3>
+            <p>⭐ 9.1 | Finished</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank" style="color: #FF4867;">#3</div>
+          <div>
+            <h3>Frieren: Beyond Journey's End</h3>
+            <p>⭐ 9.1 | Finished</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank">#4</div>
+          <div>
+            <h3>Frieren: Beyond Journey's End</h3>
+            <p>⭐ 9.1 | Finished</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank">#5</div>
+          <div>
+            <h3>Frieren: Beyond Journey's End</h3>
+            <p>⭐ 9.1 | Finished</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ===== Top All time ===== -->
+    <div class="top-all-time-favorite">
+      <h1>Top 5 All Time Favorite</h1>
+      <a href="animeDetail.html">
+        <div class="top-anime-item">
+          <div class="rank" style="color: #58FF48;">#1</div>
+          <div>
+            <h3>One Piece</h3>
+            <p>168K | Ongoing</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank" style="color: #CF8735;">#2</div>
+          <div>
+            <h3>Naruto</h3>
+            <p>168k | Finished</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank" style="color: #FF4867;">#3</div>
+          <div>
+            <h3>Attack on titan</h3>
+            <p>168k | Finished maybe</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank">#4</div>
+          <div>
+            <h3>Bleach</h3>
+            <p>168k | Finished maybe</p>
+          </div>
+        </div>
+        <div class="top-anime-item">
+          <div class="rank">#5</div>
+          <div>
+            <h3>Jujutsu Kaisen</h3>
+            <p>168k | Not Yet Finished</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <img src="icons/yae-miko-yae-removebg-preview.png" alt="" style="align-self: center; width: 100%;">
+    </div>
+  </div>
+
+  <!-- ================================= Next Season and Upcoming Anime ======================== -->
+
+  <div id="anime-section3"></div>
+
+  <!-- ========================== None login Message ========================================== -->
+  <div class="log-backdrop" id="logBackdrop" style="display: none;">
+    <section class="log-message">
+      <button class="close-btn" aria-label="Close">&times;</button>
+      <img src="icons/meme-face.jpg" alt="">
+      <h2>Log In or Create Account</h2>
+      <p>Log in to add shows and movies to your watchlist, customize your preferences, and more! New here? Sign up for an AniSuki account.</p>
+      <div>
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Sign Up</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const closeBtn = document.querySelector('.log-message .close-btn');
+      const backdrop = document.querySelector('.log-backdrop');
+
+      if (closeBtn && backdrop) {
+        closeBtn.onclick = () => {
+          backdrop.style.display = 'none';
+          document.body.classList.remove('modal-open');
+        };
+      }
+
+      // Optional: close modal if user clicks outside the modal box
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+          backdrop.style.display = 'none';
+          document.body.classList.remove('modal-open');
+        }
+      });
+    });
+  </script>
+
+  <!-- ======================================== End of Page ============================================== -->
+  <div class="suggestion">
+    <img src="icons/loliFoxMiko.png" alt="">
+    <h3>Still looking for something to watch?</h3>
+    <h3>Check out our full library</h3>
+    <a href="browse.html"><button>View my Library</button></a>
+  </div>
+  <style>
+    .suggestion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .suggestion img{
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .suggestion button{
+      padding: 10px 20px;
+      color: white;
+      background-color: rgba(255, 255, 255, 0.164);
+      font-size: 18px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .suggestion button:hover{
+      background-color: #8806CE;
+    }
+  </style>
+
+  <!-- ======================================== Footer ================================================== -->
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer').innerHTML = html;
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AniSuki - Auth</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 80px; /* space for header */
+      background: #000000c9;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    /* Background image container */
+    .background-img {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    .background-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(5px);
+    }
+
+    /* Dark overlay for contrast */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 11, 0.726);
+      z-index: -1;
+    }
+
+    /* Logo as fixed header */
+    .logo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: rgba(26, 26, 29, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .auth-container {
+      flex-shrink: 0;
+      margin: auto 0; /* vertical auto margin */
+      width: 400px;
+      padding: 2rem;
+      background: #1A1A1D;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      z-index: 1;
+    }
+
+    .auth-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-form {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .auth-form.active {
+      display: flex;
+    }
+
+    .auth-form input {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: #2C2C31;
+      color: white;
+    }
+
+    .auth-form button {
+      height: 50px;
+      border: none;
+      border-radius: 8px;
+      background-color: #8806CE;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .auth-form button:hover {
+      background-color: #8806cece;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    a {
+      font-size: 0.9rem;
+      color: #8806CE;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .auth-form hr {
+      border: none;
+      border-top: 1px solid #444;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .auth-form p {
+      text-align: center;
+      margin: 0.5rem 0;
+      color: #aaa;
+    }
+
+    .social-buttons {
+      display: grid;
+      gap: 20px;
+    }
+
+    .social-buttons button {
+      width: 100%;
+      height: 50px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      background-color: #3b5998;
+      color: white;
+    }
+
+    .social-buttons button.google {
+      background-color: #DB4437;
+    }
+
+    .social-buttons button:hover {
+      opacity: 0.9;
+    }
+
+
+/* Small phones */
+@media (max-width: 480px) {
+  body {
+    padding-top: 60px; /* smaller header space */
+  }
+  
+  .auth-container {
+    width: 90vw;
+    margin: auto; /* vertical & horizontal centering */
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  .auth-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-form input,
+  .auth-form button {
+    font-size: 1rem;
+  }
+
+  .auth-form input {
+    padding: 0.65rem;
+  }
+  
+  .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-buttons button {
+    width: 100%;
+  }
+
+  .logo {
+    height: 60px;
+    padding: 0 10px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+}
+
+/* Tablets & small desktops */
+@media (max-width: 768px) and (min-width: 481px) {
+  .auth-container {
+    width: 70vw;
+    margin: auto; /* vertical & horizontal centering */
+    padding: 2rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <a href="watchlist.html"></a>
+
+  <!-- Background Image HTML -->
+  <div class="background-img">
+    <img src="https://wallpaperaccess.com/full/13151779.jpg" alt="Background" />
+  </div>
+  <div class="overlay"></div>
+
+  <!-- Logo as header -->
+  <div class="logo">
+    <a href="home.html" aria-label="AniSuki Home">
+      <img src="icons/AniSukiLogo.png" alt="AniSuki Logo" />
+    </a>
+  </div>
+
+  <!-- Auth Container -->
+  <div class="auth-container">
+    <h2 id="form-title">Login</h2>
+
+    <!-- ======================== Login Form ============================ -->
+    <form class="auth-form active" id="login-form" onsubmit="handleLogin(event)">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <a onclick="showForm('forgot')" tabindex="0">Forgot password?</a>
+      <button type="submit">Login</button>
+      <div class="auth-footer">
+        Don't have account? <a onclick="showForm('signup')" tabindex="0">Create an Account</a>
+      </div>
+      <hr />
+      <p>Or login with</p>
+      <div class="social-buttons">
+        <button type="button">Facebook</button>
+        <button type="button" class="google">Google</button>
+      </div>
+    </form>
+
+    <script>
+      function handleLogin(event) {
+        event.preventDefault();
+        // Here you should validate login credentials
+        // For demo, assume success:
+        localStorage.setItem('isLoggedIn', 'true');
+        // Redirect back to home or navbar page
+        window.location.href = 'home.html'; // adjust to your main page
+      }
+    </script>
+
+    <!-- ============================ Sign Up Form ============================== -->
+    <form class="auth-form" id="signup-form" onsubmit="handleLogin(event)">
+      <input type="text" placeholder="Username" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Sign Up</button>
+      <div class="auth-footer">
+        Already have an account? <a onclick="showForm('login')" tabindex="0">Login</a>
+      </div>
+      <hr />
+      <p>Or sign up with</p>
+      <div class="social-buttons">
+        <button type="button">Facebook</button>
+        <button type="button" class="google">Google</button>
+      </div>
+    </form>
+
+    <!-- ====================================== Forgot Password Form ================================= -->
+    <form class="auth-form" id="forgot-form">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit" onclick="event.preventDefault(); showForm('code');">Send Code</button>
+      <div class="auth-footer">
+        Remembered your password? <a onclick="showForm('login')" tabindex="0">Login</a>
+      </div>
+    </form>
+
+    <!-- ============================= 6-digit Code Form ====================================== -->
+    <form class="auth-form" id="code-form">
+      <input type="text" placeholder="Enter 6-digit code" maxlength="6" required />
+      <button type="submit" onclick="event.preventDefault(); showForm('reset');">Verify</button>
+      <div class="auth-footer">
+        Didn't get the code? <a onclick="showForm('forgot')" tabindex="0">Resend</a>
+      </div>
+    </form>
+
+    <!-- ============================== Enter New Password Form ================================== -->
+    <form class="auth-form" id="reset-form">
+      <input type="password" placeholder="New Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Reset Password</button>
+      <div class="auth-footer">
+        Back to <a onclick="showForm('login')" tabindex="0">Login</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showForm(form) {
+      const forms = {
+        login: document.getElementById("login-form"),
+        signup: document.getElementById("signup-form"),
+        forgot: document.getElementById("forgot-form"),
+        code: document.getElementById("code-form"),
+        reset: document.getElementById("reset-form")
+      };
+
+      const title = document.getElementById("form-title");
+
+      for (let key in forms) {
+        forms[key].classList.remove("active");
+      }
+
+      forms[form].classList.add("active");
+
+      switch(form) {
+        case 'login': title.innerText = "Login"; break;
+        case 'signup': title.innerText = "Sign Up"; break;
+        case 'forgot': title.innerText = "Forgot Password"; break;
+        case 'code': title.innerText = "Verify Code"; break;
+        case 'reset': title.innerText = "Reset Password"; break;
+      }
+    }
+  </script>
+
+</body>
+</html>

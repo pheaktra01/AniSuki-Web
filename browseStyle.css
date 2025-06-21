@@ -1,0 +1,135 @@
+  body {
+    margin: 0;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body > .container {
+    flex: 1;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .search-bar {
+    width: 510px;
+    height: 40px;
+    background-color: #181818;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #A4A4A4;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .search-bar input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #A4A4A4;
+    font-size: 16px;
+    flex: 1;
+    padding-left: 10px;
+  }
+
+  .catalogs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .catalog {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .catalog-label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    
+  }
+
+  .dropdown {
+    width: 160px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #181818;
+    color: #A4A4A4;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .dropdown select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    background-color: #181818;
+    color: #A4A4A4;
+    font-size: 14px;
+    padding: 0 10px;
+    appearance: none;
+  }
+
+
+  .results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0 40px;
+    max-width: 100%;
+  }
+
+  .anime-card {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .anime-card img {
+    width: 150px;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: rgb(58, 2, 58);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .anime-card img:hover {
+    box-shadow: 0 8px 16px #6f42c1;
+    transform: scale(1.05);
+  }
+
+  .anime-title {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  #navbar {
+    margin-bottom: 60px;
+  }
+
+
+
+
+
