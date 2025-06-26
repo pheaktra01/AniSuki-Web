@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AniSuki</title>
+  <link rel="icon" type="image/png" href="icons/logoPic.png" />
+  <link rel="stylesheet" href="css/aboutStyle.css">
+</head>
+<body>
+  <div id="navbar"></div>
+  <script src="Javascripts/headerScript.js"></script>
+
+  <!-- ========== Main Content =============== -->
+  <div class="container">
+    <h1>About AniSuki</h1>
+    <p><strong>AniSuki</strong> is a modern anime exploration platform built for fans who want a better, simpler, and more intelligent way to browse anime. Whether you're looking for the classics, regional gems, or the newest releases, AniSuki is designed to get you there — fast and distraction-free.</p>
+
+    <h2>Why AniSuki?</h2>
+    <p>Most anime sites are either bloated or too limited. AniSuki fills the gap by offering:</p>
+    <ul>
+      <li>Clean, ad-free interface with modern design</li>
+      <li>Smart filters by genre, region, release year, and more</li>
+      <li>Detailed anime descriptions and structured information</li>
+      <li>A serious, professional tone with no unnecessary noise</li>
+    </ul>
+
+    <h2>What’s Coming Next</h2>
+    <p>This is just the beginning. Planned future features include:</p>
+    <ul>
+      <li>Top charts and trending anime dashboards</li>
+      <li>User watchlist and status tracking</li>
+      <li>Release calendar with upcoming episodes and seasons</li>
+      <li>Read-only reviews and rating summaries</li>
+    </ul>
+
+    <h2>Who Made This?</h2>
+    <p>AniSuki is a solo-built project created by a passionate anime fan and developer. It's an independent effort, crafted with care to reflect what a serious anime site should look like.</p>
+
+    <h2>Tech Stack</h2>
+    <p>The site is powered by modern web technologies including:</p>
+    <ul>
+      <li>HTML5 / CSS3 / JavaScript</li>
+      <li>JSON-based data structures</li>
+      <li>(Optional) React, Vue, or Tailwind CSS if integrated</li>
+    </ul>
+
+    <div class="disclaimer">
+      <h2>Disclaimer</h2>
+      <p>AniSuki is an informational platform. We do not host, stream, or distribute any anime content.</p>
+      <p>All anime titles, media, characters, logos, and trademarks are the property of their respective copyright holders and are used only for informational and non-commercial purposes.</p>
+    </div>
+  </div>
+
+  <!-- ========================== None login Message ========================================== -->
+  <div class="log-backdrop" id="logBackdrop" style="display: none;">
+    <section class="log-message">
+    <button class="close-btn" aria-label="Close">&times;</button>
+    <img src="icons/meme-face.jpg" alt="">
+    <h2>Log In or Create Account</h2>
+    <p>Log in to add shows and movies to your watchlist, customize your preferences, and more! New here? Sign up for an AniSuki account.</p>
+    <div>
+      <button onclick="window.location.href='registerForm.html'">Login</button>
+      <button onclick="window.location.href='registerForm.html'">Sign Up</button>
+    </div>
+    </section>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="Javascripts/aboutScripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watch - AniSuki</title>
+  <link rel="icon" type="image/png" href="icons/logoPic.png" />
+  <link rel="stylesheet" href="css/watchAnimeStyle.css" />
+</head>
+<body>
+  <!-- header -->
+  <div id="navbar"></div>
+
+  <div class="main-container">
+
+    <div class="video-section">
+      <!-- video -->
+      <div class="video-wrapper">
+        <video controls poster="https://cdn.epicstream.com/images/ncavvykf/epicstream/cc63dfd72735a912e64ec9279fb18ba23c06a21d-1177x589.png?w=1177&h=589&auto=format">
+          <source type="video/mp4" >
+          Your browser does not support the video tag.
+          <track src="trialer/ENSUB.vtt" kind="subtitles" srclang="en" label="English Subtitles" default/>
+          <track src="trialer/ENSUB.vtt" kind="subtitles" srclang="ja" label="Japanese Subtitles" />
+          <track src="trialer/ENSUB.vtt" kind="subtitles" srclang="fr" label="French Subtitles" />
+          <track src="trialer/ENSUB.vtt" kind="subtitles" srclang="es" label="Spanish Subtitles" />
+        </video>
+      </div>
+      <!-- episodes -->
+      <div class="episodes">
+        <h2>Episodes</h2>
+        <div class="episode-list"></div>
+      </div>
+    </div>
+
+    <!-- anime detail section -->
+    <a href="animeDetail.html">
+      <div class="anime-info">
+        <img src="poster/Frieren-Beyond-Journeys-End.png" alt="Frieren Cover">
+        <div>
+          <h2>Frieren: Beyond Journey’s End</h2>
+          <p><strong>Sousou no Frieren</strong></p>
+          <p>⭐ 9.1 | Finished</p>
+          <a href="browse.html">
+            <div class="tags">
+              <span>Adventure</span>
+              <span>Drama</span>
+              <span>Fantasy</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- recomment anime section -->
+  <div id="anime-section"></div>
+
+  <!-- ========================== None login Message ========================================== -->
+  <div class="log-backdrop" id="logBackdrop" style="display: none;">
+    <section class="log-message">
+      <button class="close-btn" aria-label="Close">&times;</button>
+      <img src="icons/meme-face.jpg" alt="">
+      <h2>Log In or Create Account</h2>
+      <p>Log in to add shows and movies to your watchlist, customize your preferences, and more! New here? Sign up for an AniSuki account.</p>
+      <div>
+        <button onclick="window.location.href='registerForm.html'">Login</button>
+        <button onclick="window.location.href='registerForm.html'">Sign Up</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- footer -->
+  <div id="footer"></div>
+
+  <!-- scripts -->
+  <script src="Javascripts/headerScript.js"></script>
+  <script src="Javascripts/section.js"></script>
+  <script>
+    addAnimeSection("Json file/recommendAnime.json","anime-section");
+  </script>
+  <script src="Javascripts/watchAnimeScripts.js"></script>
+
+</body>
+</html>

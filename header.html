@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="css/headerStyle.css">
+
+<nav class="navbar">
+  <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <a href="home.html">
+        <img src="icons/AniSukiLogo.png" alt="AniSuki Logo" />
+      </a>
+    </div>
+  </div>
+
+  <div class="right-group">
+    <div class="nav-links" id="navLinks">
+      <a href="home.html">Home</a>
+      <a href="browse.html">Browse</a>
+      <a href="watchlist.html" id="watchlist">Watchlist</a>
+      <a href="about.html">About</a>
+      <a href="registerForm.html" id="loginLink" style="color: #a855f7;">Login</a>
+    </div>
+    <div class="profile" id="profileContainer" style="display: none;">
+      <img src="icons/Yagami.JPG" alt="Profile" id="profileAvatar" />
+      <div class="profile-menu" id="profileMenu">
+        <a href="uncompletePage.html">Profile</a>
+        <button onclick="logout()" style="color: red;">Log out</button>
+      </div>
+    </div>
+  </div>
+</nav>

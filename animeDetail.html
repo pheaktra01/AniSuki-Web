@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Anime Detail</title>
+    <link rel="icon" type="image/png" href="icons/logoPic.png" />
+    <link rel="stylesheet" href="css/animeDetailStyle.css">
+</head>
+<body>
+    <!-- nav bar -->
+    <div id="navbar"></div>
+
+    <!-- ====== anime detail section ========= -->
+    <div class="anime-detail">
+        <!-- anime detail hero section -->
+        <div class="anime-detail-header">
+            <div class="anime-banner">
+                <img src="cover/frieren-cover-2.jpg" alt="banner">
+                <div class="top-gradient"></div>
+            </div>
+            <div class="anime-info">
+            <img src="poster/Frieren-Beyond-Journeys-End.png" alt="Frieren Cover">
+            <div>
+                <h2>Frieren: Beyond Journey’s End</h2>
+                <p><strong>Sousou no Frieren</strong></p>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span id="average-rating" style="font-size: 16px; color: #FFD700;">⭐ 9.1</span>
+                    <span id="rating-count" style="font-size: 14px; color: #ccc;">(0 votes)</span>
+                </div>
+                <div>
+                    <a href="watchAnime.html">
+                        <button class="watch-nowBtn">▶ Watch Now</button>
+                    </a>
+                    <button class="ratingBtn" id="open-rating">⭐ Rate Anime</button>
+                    <button class="watchlistBtn" id="addBtn"><img src="icons/add-to-watchlist.png" alt=""></button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Rating Modal -->
+        <div id="rating-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+            <div style="background:#18122b; padding:32px 24px 24px 24px; border-radius:12px; min-width:300px; text-align:center; position:relative;">
+            <span id="close-rating" style="position:absolute; top:10px; right:16px; font-size:22px; color:#ccc; cursor:pointer;">&times;</span>
+            <h3 style="color:#c084fc; margin-bottom:18px;">Rate this Anime</h3>
+            <div id="star-container" style="font-size:32px; margin-bottom:16px;">
+                <span class="star" data-value="1" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="2" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="3" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="4" style="cursor:pointer; color:#ccc;">&#9733;</span>
+                <span class="star" data-value="5" style="cursor:pointer; color:#ccc;">&#9733;</span>
+            </div>
+            <button id="submit-rating" class="watch-nowBtn" style="margin:0 auto; display:block;">Submit</button>
+            <div id="rating-message" style="margin-top:12px; color:#c084fc; font-size:16px;"></div>
+            </div>
+        </div>
+
+        <!-- anime description -->
+        <div class="anime-description">
+            <div class="description-header">
+                <h3 id="overview-tab" class="active-tab">Overview</h3>
+                <h3 id="episodes-tab">Episodes</h3>
+                <h3 id="character-tab">Characters</h3>
+            </div>
+
+            <!-- overview section -->
+            <div class="overview">
+                <div class="detail">
+                    <span class="detail-value">Detail</span>
+                    <div class="info-row"><span class="label">Type</span><span class="value">TV</span></div>
+                    <div class="info-row"><span class="label">Episodes</span><span class="value">28</span></div>
+                    <div class="info-row"><span class="label">Genre</span><span class="value">Adventure, Fantasy, Drama</span></div>
+                    <div class="info-row"><span class="label">Status</span><span class="value">Finished</span></div>
+                    <div class="info-row"><span class="label">Country</span><span class="value">Japan</span></div>
+                    <div class="info-row"><span class="label">Studio</span><span class="value">Madhouse</span></div>
+                    <div class="info-row"><span class="label">Source</span><span class="value">Manga</span></div>
+                    <div class="info-row"><span class="label">Duration</span><span class="value">24 min</span></div>
+                    <div class="info-row"><span class="label">Popularity</span><span class="value">168k</span></div>
+                </div>
+                <div class="description">
+                    <span class="deacription-value">Description</span>
+                    <p>Frieren: Beyond Journey’s End follows the story of Frieren, an elven mage who was part of the legendary hero party that defeated the Demon King. After the hero's death, she embarks on a journey to understand human emotions and the passage of time, exploring themes of friendship, loss, and the meaning of life.</p>
+                </div>
+            </div>
+
+            <!-- episodes section -->
+            <div class="episodes">
+                <div class="episode-list"></div>
+            </div>
+
+            <!-- character section -->
+            <div class="characters">
+                <div id="character-section" class="characters-section"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- recommentdation section -->
+    <div id="anime-section"></div>
+
+    <!-- ========================== None login Message ========================================== -->
+    <div class="log-backdrop" id="logBackdrop" style="display: none;">
+        <section class="log-message">
+        <button class="close-btn" aria-label="Close">&times;</button>
+        <img src="icons/meme-face.jpg" alt="">
+        <h2>Log In or Create Account</h2>
+        <p>Log in to add shows and movies to your watchlist, customize your preferences, and more! New here? Sign up for an AniSuki account.</p>
+        <div>
+            <button onclick="window.location.href='registerForm.html'">Login</button>
+            <button onclick="window.location.href='registerForm.html'">Sign Up</button>
+        </div>
+        </section>
+    </div>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <script src="Javascripts/headerScript.js"></script>
+    <script src="Javascripts/section.js"></script>
+    <script src="Javascripts/animeDetailScripts.js"></script>
+</body>
+</html>

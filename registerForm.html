@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AniSuki - Auth</title>
+  <link rel="icon" type="image/png" href="icons/logoPic.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/registerStyle.css">
+</head>
+<body>
+
+  <a href="watchlist.html"></a>
+
+  <!-- Background Image HTML -->
+  <div class="background-img">
+    <img src="https://wallpaperaccess.com/full/13151779.jpg" alt="Background" />
+  </div>
+  <div class="overlay"></div>
+
+  <!-- Logo as header -->
+  <div class="logo">
+    <a href="home.html" aria-label="AniSuki Home">
+      <img src="icons/AniSukiLogo.png" alt="AniSuki Logo" />
+    </a>
+  </div>
+
+  <!-- Auth Container -->
+  <div class="auth-container">
+    <h2 id="form-title">Login</h2>
+
+    <!-- ======================== Login Form ============================ -->
+    <form class="auth-form active" id="login-form" onsubmit="handleLogin(event)">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <a onclick="showForm('forgot')" tabindex="0">Forgot password?</a>
+      <button type="submit">Login</button>
+      <div class="auth-footer">
+        Don't have account? <a onclick="showForm('signup')" tabindex="0">Create an Account</a>
+      </div>
+      <hr />
+      <p>Or login with</p>
+      <div class="social-buttons">
+        <button type="button">Facebook</button>
+        <button type="button" class="google">Google</button>
+      </div>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form class="auth-form" id="signup-form" onsubmit="handleLogin(event)">
+      <input type="text" placeholder="Username" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Sign Up</button>
+      <div class="auth-footer">
+        Already have an account? <a onclick="showForm('login')" tabindex="0">Login</a>
+      </div>
+      <hr />
+      <p>Or sign up with</p>
+      <div class="social-buttons">
+        <button type="button">Facebook</button>
+        <button type="button" class="google">Google</button>
+      </div>
+    </form>
+
+    <!-- Forgot Password Form -->
+    <form class="auth-form" id="forgot-form">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit" onclick="event.preventDefault(); showForm('code');">Send Code</button>
+      <div class="auth-footer">
+        Remembered your password? <a onclick="showForm('login')" tabindex="0">Login</a>
+      </div>
+    </form>
+
+    <!-- 6-digit Code Form -->
+    <form class="auth-form" id="code-form">
+      <input type="text" placeholder="Enter 6-digit code" maxlength="6" required />
+      <button type="submit" onclick="event.preventDefault(); showForm('reset');">Verify</button>
+      <div class="auth-footer">
+        Didn't get the code? <a onclick="showForm('forgot')" tabindex="0">Resend</a>
+      </div>
+    </form>
+
+    <!-- Enter New Password Form -->
+    <form class="auth-form" id="reset-form">
+      <input type="password" placeholder="New Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Reset Password</button>
+      <div class="auth-footer">
+        Back to <a onclick="showForm('login')" tabindex="0">Login</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="Javascripts/registerScripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000000;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Content Styles */
+.container {
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem 2rem 2rem 2rem; /* Add top padding for navbar */
+}
+
+ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 2rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+/* ==== none login message ==== */
+.log-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999; /* Make sure it's above everything */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.log-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1b1031fa;
+    text-align: center;
+    color: white;
+    padding: 16px;
+    border-radius: 6px;
+    z-index: 1000;
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.log-message img {
+    width: 50%;
+    max-width: 300px;
+    height: auto;
+}
+
+.log-message div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.log-message div button {
+    width: 100px;
+    height: 50px;
+    color: #fff;
+    background: linear-gradient(90deg, #8806CE 0%, #6e42c1 100%);
+    border: none;
+    margin: 15px 10px 0 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(136, 6, 206, 0.15);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 30px;
+}
+
+.log-message div button:hover {
+    background: linear-gradient(90deg, #6e42c1 0%, #8806CE 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(136, 6, 206, 0.25);
+}
+
+.log-message p {
+    font-size: 16px;
+    margin: 10px 20px;
+}
+
+.log-message h2 {
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ✅ Responsive for phones */
+@media (max-width: 600px) {
+    .log-message {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    .log-message img {
+        width: 70%;
+    }
+
+    .log-message h2 {
+        font-size: 22px;
+    }
+
+    .log-message p {
+        font-size: 14px;
+    }
+
+    .log-message div button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .close-btn {
+        font-size: 28px;
+    }
+}
+
+body.modal-open {
+  overflow: hidden;
+}

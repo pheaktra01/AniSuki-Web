@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AniSuki</title>
+  <link rel="icon" type="image/png" href="icons/logoPic.png" />
+  <link rel="stylesheet" href="css/browseStyle.css" />
+</head>
+<body>
+  <!-- header -->
+  <div id="navbar"></div>
+
+  <!-- main container -->
+  <div class="container">
+    <!-- Search bar and Catalog dropdown -->
+    <div style="display: flex; gap: 10px;">
+      <div class="search-bar">
+        <img src="icons/Search.png" alt="Search" width="20" height="20" />
+        <input type="text" placeholder="Search" />
+      </div>
+      
+      <!-- show catalog in responsive -->
+      <div class="catalog-dropdown-container" style="display: none;">
+        <button id="catalogToggleBtn" aria-haspopup="true" aria-expanded="false" type="button" style="width: 100px;">
+          Catalogs ▼
+        </button>
+        <div class="catalog-menu" hidden>
+          <label><input type="checkbox" data-catalog="Genre" /> Genre</label>
+          <label><input type="checkbox" data-catalog="Year" /> Year</label>
+          <label><input type="checkbox" data-catalog="Region" /> Region</label>
+          <label><input type="checkbox" data-catalog="Status" /> Status</label>
+          <label><input type="checkbox" data-catalog="Sort By" /> Sort By</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Catalog Filters -->
+    <div class="catalogs">
+      <!-- Genre -->
+      <div class="catalog">
+        <div class="catalog-label">Genre</div>
+        <div class="dropdown">
+          <select>
+            <option>All</option>
+            <option>Action</option>
+            <option>Romance</option>
+            <option>Comedy</option>
+            <!-- Add more genres as needed -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Year -->
+      <div class="catalog">
+        <div class="catalog-label">Year</div>
+        <div class="dropdown">
+          <select>
+            <option>All</option>
+            <option>2025</option>
+            <option>2024</option>
+            <option>Before 2000</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Region -->
+      <div class="catalog">
+        <div class="catalog-label">Region</div>
+        <div class="dropdown">
+          <select>
+            <option>All</option>
+            <option>Japan</option>
+            <option>China</option>
+            <option>Korea</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="catalog">
+        <div class="catalog-label">Status</div>
+        <div class="dropdown">
+          <select>
+            <option>All</option>
+            <option>Releasing</option>
+            <option>Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Sort By -->
+      <div class="catalog">
+        <div class="catalog-label">Sort By</div>
+        <div class="dropdown">
+          <select>
+            <option>Popularity</option>
+            <option>Newest</option>
+            <option>Rating</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anime Results Section -->
+    <div id="anime-section" class="results"></div>
+  </div>
+
+  <!-- ========================== None login Message ========================================== -->
+  <div class="log-backdrop" id="logBackdrop" style="display: none;">
+    <section class="log-message">
+      <button class="close-btn" aria-label="Close">&times;</button>
+      <img src="icons/meme-face.jpg" alt="">
+      <h2>Log In or Create Account</h2>
+      <p>Log in to add shows and movies to your watchlist, customize your preferences, and more! New here? Sign up for an AniSuki account.</p>
+      <div>
+        <button onclick="window.location.href='registerForm.html'">Login</button>
+        <button onclick="window.location.href='registerForm.html'">Sign Up</button>
+      </div>
+    </section>
+  </div>
+  
+  <!-- footer -->
+  <div id="footer"></div>
+  <script src="Javascripts/headerScript.js"></script>
+  <script src="Javascripts/browseScripts.js"></script>
+</body>
+</html>

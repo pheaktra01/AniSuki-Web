@@ -1,0 +1,648 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: white;
+}
+
+/* ========================================= First Screen Style or Hero Style ============================================ */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+    z-index: 1;
+}
+
+.text-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    z-index: 2;
+    color: white;
+    max-width: 870px;
+    margin-bottom: 50px;
+    left: 5%;
+}
+
+.upcoming-tag, .release-info {
+    font-size: 16px;
+    color: #FF4867;
+    margin-bottom: 5px;
+}
+
+.anime-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 16px;
+    color: #A1A1A1;
+    line-height: 1.5;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: white;
+    z-index: 3;
+    animation: bounce 1.5s infinite;
+    opacity: 0.8;
+}
+
+@keyframes bounce {
+    0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    }
+    50% {
+    transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.detail-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    width: 140px;
+    height: 50px;
+    background-color: #8806CE; /* or your preferred theme color */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.detail-button:hover {
+  background-color: #8806ce1c;
+}
+
+#volumeToggle {
+    background: none; 
+    border: none;
+    font-size: 2em;
+    justify-content: center;
+    align-items: center;   
+}
+
+@media (max-width: 440px) {
+    .text-content {
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    max-width: 100%;
+    }
+
+    .upcoming-tag, .release-info {
+    font-size: 14px;
+    }
+
+    .anime-title {
+    font-size: 24px;
+    }
+
+    .description {
+    font-size: 14px;
+    }
+
+    .scroll-indicator {
+    font-size: 14px;
+    }
+
+    .anime-card {
+    width: 100px;
+    }
+
+    .anime-img {
+    width: 100px;
+    height: 150px;
+    }
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===================================== SECTION STYLE ============================================ */
+.section {
+    padding: 40px 5vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title {
+    font-size: 1.5rem; /* Responsive font size */
+    color: white;
+    font-weight: bold;
+}
+
+.anime-scroll-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.anime-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.anime-card {
+    margin-top: 20px;
+    flex: 0 0 auto;
+    width: 30vw; /* responsive width */
+    max-width: 200px;
+    min-width: 120px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.anime-card:hover {
+    transform: scale(0.97);
+    z-index: 10;
+}
+
+.anime-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3; /* Maintain image ratio */
+    border-radius: 5px;
+    object-fit: cover;
+    display: block;
+    transition: box-shadow 0.3s ease;
+}
+
+.anime-name {
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
+    margin-top: 5px;
+    white-space: normal;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
+.anime-episode {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.79);
+    color: white;
+    font-size: 0.75rem;
+    width: 60px;
+    height: 25px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+/* Media Queries for smaller devices */
+@media (max-width: 768px) {
+    .anime-card {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .anime-card {
+        width: 40vw;
+    }
+}
+
+/* ================================= Scroll Buttons =========================== */
+.slider-wrapper {
+    position: relative;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 45%;
+    z-index: 20;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transition: 0.3s ease, 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    background: none;
+}
+
+.scroll-btn.left {
+    left: 0;
+    margin-left: -40px;
+}
+
+.scroll-btn.right {
+    right: 0;
+    margin-right: -40px;
+}
+
+.scroll-btn:hover {
+    color: violet;
+}
+
+@media (max-width: 768px) {
+    .scroll-btn {
+        display: none !important;
+    }
+}
+
+/* ========== Feature STYLE ============= */
+.feature-section {
+    margin-left: 4.5%;
+    margin-right: 4.5%;
+
+}
+
+.feature-section .section-title {
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 15px;
+    
+}
+
+.feature-list{
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.feature-list::-webkit-scrollbar{
+    display: none;
+}
+
+.feature-category {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 60px;
+    background-color: #ffffff17;
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: normal; /* Allow text to wrap inside the button */
+}
+
+.feature-category:hover {
+    background-color: #6f42c1;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(111, 66, 193, 0.3), 0 1.5px 6px rgba(0,0,0,0.18);
+    transform: translateY(-3px) scale(1.04);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+/* ==================== All Top Anime Style ======================================= */
+
+.top-anime {
+    background-color: rgba(111,66,193,0.13);
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap; /* allow wrapping on smaller screens */
+}
+
+.top-rate-anime,
+.top-all-time-favorite {
+    flex: 1 33%; /* Allow it to shrink/grow with flex-wrap */
+    width: 100%;
+}
+
+/* Text styling */
+.top-rate-anime h1,
+.top-all-time-favorite h1 {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+.top-anime-item {
+    margin-bottom: 14px;
+    border-radius: 10px;
+    background-color: #ffffff13;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 16px;
+    width: 100%;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.rank {
+    font-size: 22px;
+    font-weight: bold;
+    color: #A4A4A4;
+    margin-right: 18px;
+}
+
+.top-anime-item h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.top-anime-item p {
+    margin: 0;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.top-anime-item:hover {
+    background: #6f42c1 60%;
+    cursor: pointer;
+    transform: scale(1.01);
+    box-shadow:rgba(111, 66, 193, 0.25);
+}
+
+@media (max-width: 768px) {
+    .top-anime {
+        gap: 14px;
+        padding: 16px 4px;
+    }
+
+    .top-rate-anime h1,
+    .top-all-time-favorite h1 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .top-anime-item {
+        padding: 0 10px;
+    }
+
+    .top-anime-item h3 {
+        font-size: 0.95rem;
+    }
+
+    .top-anime-item p {
+        font-size: 0.8rem;
+    }
+
+    .top-anime div img {
+        display: none;
+    }
+
+    .top-anime {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px 8px;
+    }
+
+    .top-rate-anime,
+    .top-all-time-favorite {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+/* === icon in anime card === */
+.anime-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.anime-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.anime-card:hover .anime-actions {
+    opacity: 1;
+    background-color: #0000007c;
+}
+
+.icon-button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.icon-button img{
+    width: 25px;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ======= none login message ======== */
+.log-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999; /* Make sure it's above everything */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.log-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1b1031fa;
+    text-align: center;
+    color: white;
+    padding: 16px;
+    border-radius: 6px;
+    z-index: 1000;
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.log-message img {
+    width: 50%;
+    max-width: 300px;
+    height: auto;
+}
+
+.log-message div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.log-message div button {
+    width: 100px;
+    height: 50px;
+    color: #fff;
+    background: linear-gradient(90deg, #8806CE 0%, #6e42c1 100%);
+    border: none;
+    margin: 15px 10px 0 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(136, 6, 206, 0.15);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 30px;
+}
+
+.log-message div button:hover {
+    background: linear-gradient(90deg, #6e42c1 0%, #8806CE 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(136, 6, 206, 0.25);
+}
+
+.log-message p {
+    font-size: 16px;
+    margin: 10px 20px;
+}
+
+.log-message h2 {
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ✅ Responsive for phones */
+@media (max-width: 600px) {
+    .log-message {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    .log-message img {
+        width: 70%;
+    }
+
+    .log-message h2 {
+        font-size: 22px;
+    }
+
+    .log-message p {
+        font-size: 14px;
+    }
+
+    .log-message div button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .close-btn {
+        font-size: 28px;
+    }
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* =========== end of page style ==================== */
+.suggestion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.suggestion img{
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.suggestion button{
+    padding: 10px 20px;
+    color: white;
+    background-color: #8806CE;
+    font-size: 18px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.suggestion button:hover{
+    background-color: #8806ce2c;
+}

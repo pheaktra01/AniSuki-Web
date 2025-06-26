@@ -1,0 +1,54 @@
+{
+  " ": [
+    {
+      "name": "Frieren",
+      "image": "poster/frieren-poster.jpg",
+      "description": "An elven mage who, after defeating the Demon King with her party, embarks on a journey to understand human emotions and mortality. Her long lifespan makes her perceive time differently, leading to a quest of emotional discovery."
+    },
+    {
+      "name": "Fern",
+      "image": "poster/fern-poster.jpg",
+      "description": "A young orphaned mage from the south, taken in by Heiter and later mentored by Frieren. She becomes a First-Class Mage, showcasing her exceptional talent and dedication."
+    },
+    {
+      "name": "Stark",
+      "image": "poster/stark-poster.jpg",
+      "description": "A brave yet timid warrior trained by Eisen. Despite his fears, he proves to be a reliable companion, joining Frieren and Fern on their journey."
+    },
+    {
+      "name": "Himmel",
+      "image": "poster/himmel-poster.webp",
+      "description": "The charismatic human hero who led the party to defeat the Demon King. His death profoundly impacts Frieren, prompting her introspective journey."
+    },
+    {
+      "name": "Heiter",
+      "image": "poster/heiter-poster.webp",
+      "description": "A jovial priest and original party member. He adopts Fern and entrusts her to Frieren's care, playing a pivotal role in their lives."
+    },
+    {
+      "name": "Eisen",
+      "image": "poster/eisen-poster.jpg",
+      "description": "A stoic dwarven warrior and original party member. He mentors Stark and encourages him to join Frieren's journey."
+    },
+    {
+      "name": "Aura the Guillotine",
+      "image": "poster/aura-poster.jpg",
+      "description": "One of the Seven Sages of Destruction. A powerful necromancer who confronts Frieren during her journey, using an army of the dead."
+    },
+    {
+      "name": "Serie",
+      "image": "poster/serie-poster.jpg",
+      "description": "The head of the Continental Magic Association and one of the oldest known mages. She has a complicated past with Frieren and offers deep insight into magic and history."
+    },
+    {
+      "name": "Qual",
+      "image": "poster/qual-poster.jpg",
+      "description": "Aura’s loyal undead servant, revived from a once-living warrior. Known for his strategic thinking and tragic backstory."
+    },
+    {
+      "name": "Kraft",
+      "image": "poster/kraft-poster.jpg",
+      "description": "A traveling monk who joins Frieren briefly. He provides philosophical wisdom and has a calm, observant nature."
+    }
+  ]
+}
