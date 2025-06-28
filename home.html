@@ -187,18 +187,6 @@
     addSection("Json file/lastUpdate.json", "last-update");
     addAnimeSection("Json file/animeSection1.json", "anime-section2");
     addAnimeSection("Json file/nextSeason.json", "anime-section3");
-
-    function protectWatchlist() {
-      const watchlistLinks = document.querySelectorAll('a[href="watchlist.html"]');
-      watchlistLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-          if (!localStorage.getItem('isLoggedIn')) {
-            e.preventDefault();
-            showLogMessage(); // <- This should open your login modal
-          }
-        });
-      });
-    }
   </script>
 </body>
 </html>
