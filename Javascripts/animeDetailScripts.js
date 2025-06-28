@@ -95,20 +95,29 @@ fetch('Json file/Anime.json')
     })
     .catch(() => { /* fallback to default title */ });
 
-addBtn.onclick = (e) => {
+addBtn.onclick = async (e) => {
     e.stopPropagation();
     e.preventDefault();
+    if (!localStorage.getItem('isLoggedIn')) {
+        showLogMessage();
+        return;
+    }
 
-    if (!isAdded) {
+    let playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+    const inPlaylist = playlist.some(item => item.title === anime.title);
+
+    if (!inPlaylist) {
+        playlist.push(anime);
+        localStorage.setItem('playlist', JSON.stringify(playlist));
         addBtn.classList.add('added-to-playlist');
         addBtn.style.backgroundColor = '#8806CE';
-        isAdded = true;
-        Messages(`✅ Added "${anime.title}" to your playlist!`);
+        Message(`✅ Added "${anime.title}" to your playlist!`);
     } else {
+        playlist = playlist.filter(item => item.title !== anime.title);
+        localStorage.setItem('playlist', JSON.stringify(playlist));
         addBtn.classList.remove('added-to-playlist');
         addBtn.style.backgroundColor = '';
-        isAdded = false;
-        Messages(`✅ Removed "${anime.title}" from your playlist.`);
+        Message(`✅ Removed "${anime.title}" from your playlist.`);
     }
 };
 

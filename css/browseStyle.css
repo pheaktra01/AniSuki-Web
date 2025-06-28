@@ -120,7 +120,7 @@ body > .container {
 
 .results.single-result .anime-card {
   flex: 0 0 100%;
-  max-width: 500px; /* Increase this to your desired width */
+  max-width: 200px; /* Increase this to your desired width */
 }
 
 .anime-card img {
@@ -178,6 +178,7 @@ body > .container {
 
 .icon-button img {
   width: 25px;
+  height: 25px;
 }
 
 .icon-button:hover {
@@ -245,7 +246,7 @@ body > .container {
 }
 
 
-
+/* =========== Catalogs Dropdown ============ */
 .catalog-dropdown-container {
   position: relative;
   margin-bottom: 1rem;

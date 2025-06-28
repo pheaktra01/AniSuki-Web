@@ -56,19 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    //remove in watchlist
-    const removeButtons = document.querySelectorAll('.icon-button.remove');
-    removeButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const card = button.closest('.watchlist-card');
-            if (card) {
-                card.remove();
-                updateEmptyStates();
-            }
-        });
-    });
-
     // Toggle more options
     document.querySelectorAll('.more-options').forEach(btn => {
         btn.addEventListener('click', function (e) {
@@ -94,3 +81,152 @@ fetch('footer.html')
     .then(html => {
         document.getElementById('footer').innerHTML = html;
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const watchlistContent = document.querySelector('#watchlist-content .watchlist-history');
+  const watchlistEmpty = document.getElementById('watchlist-empty');
+
+  function updateEmptyStates() {
+    const historyContainer = document.querySelector('.animehistory');
+    const historyEmpty = document.getElementById('history-empty');
+    const watchlistContainer = document.getElementById('watchlist-content');
+
+    // Check History empty state
+    if (!historyContainer.querySelector('.history-card')) {
+      historyEmpty.style.display = 'block';
+    } else {
+      historyEmpty.style.display = 'none';
+    }
+
+    // Check Watchlist empty state
+    if (!watchlistContent.querySelector('.watchlist-card')) {
+      watchlistEmpty.style.display = 'block';
+    } else {
+      watchlistEmpty.style.display = 'none';
+    }
+  }
+
+  function renderWatchlist() {
+    const playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+
+    // Clear current watchlist content
+    watchlistContent.innerHTML = '';
+
+    playlist.forEach(anime => {
+      // Create watchlist card container
+      const card = document.createElement('div');
+      card.className = 'watchlist-card';
+
+      // Inner wrapper div with position relative
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+
+      // Link to anime detail page
+      const detailLink = document.createElement('a');
+      detailLink.href = `animeDetail.html?title=${encodeURIComponent(anime.title)}`;
+
+      // Image element
+      const img = document.createElement('img');
+      img.src = anime.image;
+      img.alt = anime.title;
+      img.className = 'anime-img';
+
+      detailLink.appendChild(img);
+      wrapper.appendChild(detailLink);
+
+      // Actions container
+      const actions = document.createElement('div');
+      actions.className = 'anime-actions';
+
+      // Play button
+      const playBtn = document.createElement('button');
+      playBtn.className = 'icon-button';
+      playBtn.title = 'Play Now';
+      playBtn.innerHTML = `<img src="icons/Play.png" alt="Play" class="icon-img">`;
+      playBtn.onclick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        window.location.href = `watchAnime.html?title=${encodeURIComponent(anime.title)}`;
+      };
+
+      // Detail button
+      const detailBtn = document.createElement('button');
+      detailBtn.className = 'icon-button';
+      detailBtn.title = 'View Anime Details';
+      detailBtn.innerHTML = `<img src="icons/more-detail.png" alt="Detail" class="icon-img">`;
+      detailBtn.onclick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        window.location.href = `animeDetail.html?title=${encodeURIComponent(anime.title)}#details`;
+      };
+
+      // Remove button
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'icon-button remove';
+      removeBtn.title = 'Remove from Playlist';
+      removeBtn.innerHTML = `<img src="icons/Trash.png" alt="Remove" class="icon-img">`;
+      removeBtn.onclick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        // Remove anime from localStorage playlist
+        let playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+        playlist = playlist.filter(item => item.title !== anime.title);
+        localStorage.setItem('playlist', JSON.stringify(playlist));
+
+        // Go to Watchlist page
+        window.location.href = 'watchlist.html';
+
+        // Optional message
+        Message(`❌ Removed "${anime.title}" from your playlist.`);
+
+        // Re-render watchlist to update UI immediately
+        renderWatchlist();
+      };
+
+      actions.appendChild(playBtn);
+      actions.appendChild(detailBtn);
+      actions.appendChild(removeBtn);
+
+      wrapper.appendChild(actions);
+
+      // Anime title
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'anime-title';
+      titleDiv.textContent = anime.title;
+
+      card.appendChild(wrapper);
+      card.appendChild(titleDiv);
+
+      watchlistContent.appendChild(card);
+    });
+
+    // Update empty state visibility
+    updateEmptyStates();
+  }
+
+  // Initial render
+  renderWatchlist();
+
+  // Tab switch handlers (optional)
+  const watchlistTab = document.getElementById('watchlist-tab');
+  const historyTab = document.getElementById('history-tab');
+  const watchlistTabContent = document.getElementById('watchlist-content');
+  const historyTabContent = document.getElementById('history-content');
+
+  watchlistTab.onclick = () => {
+    watchlistTab.classList.add('active');
+    historyTab.classList.remove('active');
+    watchlistTabContent.style.display = 'block';
+    historyTabContent.style.display = 'none';
+  };
+
+  historyTab.onclick = () => {
+    historyTab.classList.add('active');
+    watchlistTab.classList.remove('active');
+    historyTabContent.style.display = 'block';
+    watchlistTabContent.style.display = 'none';
+  };
+});
+
